@@ -1,0 +1,431 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Deployment Diagram - windows server</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		windows servidor	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Deployment Diagram - windows server		</span>
+<a onclick="javascript: showVpLink('windows servidor.vpp://diagram/tlGynlaGAqCMshKI', 'windows server\nwindows servidor.vpp://diagram/tlGynlaGAqCMshKI', 'windows server', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|517.0|93.0|93.0|40.0|Artifact_qk6mnlaGAqCMshTy.html|Artifact_qk6mnlaGAqCMshTy.html|qk6mnlaGAqCMshTx" id="optionqk6mnlaGAqCMshTx">email : Artifact</option>
+<option value="shape|487.0|42.0|153.0|111.0|Node_o0KmnlaGAqCMshTp.html|Node_o0KmnlaGAqCMshTp.html|I0KmnlaGAqCMshTo" id="optionI0KmnlaGAqCMshTo">gmail : Node</option>
+<option value="shape|459.0|2.0|208.0|161.0|Node_0pgmnlaGAqCMshSy.html|Node_0pgmnlaGAqCMshSy.html|0pgmnlaGAqCMshSx" id="option0pgmnlaGAqCMshSx">Servidor de correo : Node</option>
+<option value="shape|873.0|252.0|158.0|60.0|Artifact_ir36nlaGAqCMshQX.html|Artifact_ir36nlaGAqCMshQX.html|Cr36nlaGAqCMshQW" id="optionCr36nlaGAqCMshQW">html,css,js : Artifact</option>
+<option value="shape|840.0|184.0|207.0|171.0|Node_wqj6nlaGAqCMshQO.html|Node_wqj6nlaGAqCMshQO.html|wqj6nlaGAqCMshQN" id="optionwqj6nlaGAqCMshQN">navegador : Node</option>
+<option value="shape|793.0|114.0|297.0|275.0|Node_WxzanlaGAqCMshN2.html|Node_WxzanlaGAqCMshN2.html|WxzanlaGAqCMshN1" id="optionWxzanlaGAqCMshN1">DEVICE CLIENTE : Node</option>
+<option value="shape|85.0|294.0|110.0|40.0|Artifact_SwSanlaGAqCMshNj.html|Artifact_SwSanlaGAqCMshNj.html|SwSanlaGAqCMshNi" id="optionSwSanlaGAqCMshNi">*.sql : Artifact</option>
+<option value="shape|65.0|248.0|163.0|100.0|Node_CKCqnlaGAqCMshMz.html|Node_CKCqnlaGAqCMshMz.html|CKCqnlaGAqCMshMy" id="optionCKCqnlaGAqCMshMy">Mypostgrest SQL : Node</option>
+<option value="shape|30.0|190.0|233.0|175.0|Node_gdMqnlaGAqCMshMq.html|Node_gdMqnlaGAqCMshMq.html|gdMqnlaGAqCMshMp" id="optiongdMqnlaGAqCMshMp">windows : Node</option>
+<option value="shape|2.0|133.0|302.0|264.0|Node_km0qnlaGAqCMshMh.html|Node_km0qnlaGAqCMshMh.html|Em0qnlaGAqCMshMg" id="optionEm0qnlaGAqCMshMg"> SERVIDOR BASE DE DATOS : Node</option>
+<option value="shape|435.0|411.0|146.0|48.0|Artifact_yGcKnlaGAqCMshKv.html|Artifact_yGcKnlaGAqCMshKv.html|yGcKnlaGAqCMshKu" id="optionyGcKnlaGAqCMshKu">*:war : Artifact</option>
+<option value="shape|409.0|355.0|203.0|129.0|Node_Fe4KnlaGAqCMshKk.html|Node_Fe4KnlaGAqCMshKk.html|Fe4KnlaGAqCMshKj" id="optionFe4KnlaGAqCMshKj">apache  : Node</option>
+<option value="shape|375.0|302.0|270.0|193.0|Node_CnlKnlaGAqCMshLh.html|Node_CnlKnlaGAqCMshLh.html|CnlKnlaGAqCMshLg" id="optionCnlKnlaGAqCMshLg">windows : Node</option>
+<option value="shape|346.0|252.0|329.0|262.0|Node_RCdynlaGAqCMshKV.html|Node_RCdynlaGAqCMshKV.html|RCdynlaGAqCMshKU" id="optionRCdynlaGAqCMshKU">SERVIDOR WED : Node</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/windows_server.png" usemap="#diagram_map" class="Image" width="1094" height="518"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="675.0, 357.0, 675.0, 371.0, 793.0, 371.0, 793.0, 357.0" coords2="675.0, 357.0, 675.0, 371.0, 793.0, 371.0, 793.0, 357.0" shape="poly" alt="HTIP:8080/HTTPS:443:Association" id="areadiagram_map_RlaGnlaGAqCMshRA_default" href="Association_GlaGnlaGAqCMshQ7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="304.0, 348.0, 304.0, 362.0, 346.0, 362.0, 346.0, 348.0" coords2="304.0, 348.0, 304.0, 362.0, 346.0, 362.0, 346.0, 348.0" shape="poly" alt="TPC/3306:Association" id="areadiagram_map_vOXGnlaGAqCMshSQ_default" href="Association_KOXGnlaGAqCMshSL.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="592.0, 163.0, 592.0, 252.0, 606.0, 252.0, 606.0, 163.0" coords2="592.0, 163.0, 592.0, 252.0, 606.0, 252.0, 606.0, 163.0" shape="poly" alt="SMTP587::Association" id="areadiagram_map_tAhmnlaGAqCMshUg_default" href="Association_hAhmnlaGAqCMshUb.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="517, 93, 610, 133" coords2="517, 93, 610, 133" shape="rect" alt="email:Artifact" id="areadiagram_map_qk6mnlaGAqCMshTx_default" href="Artifact_qk6mnlaGAqCMshTy.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="487, 42, 640, 153" coords2="487, 42, 640, 153" shape="rect" alt="gmail:Node" id="areadiagram_map_I0KmnlaGAqCMshTo_default" href="Node_o0KmnlaGAqCMshTp.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="459, 2, 667, 163" coords2="459, 2, 667, 163" shape="rect" alt="Servidor de correo:Node" id="areadiagram_map_0pgmnlaGAqCMshSx_default" href="Node_0pgmnlaGAqCMshSy.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="873, 252, 1031, 312" coords2="873, 252, 1031, 312" shape="rect" alt="html,css,js:Artifact" id="areadiagram_map_Cr36nlaGAqCMshQW_default" href="Artifact_ir36nlaGAqCMshQX.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="840, 184, 1047, 355" coords2="840, 184, 1047, 355" shape="rect" alt="navegador:Node" id="areadiagram_map_wqj6nlaGAqCMshQN_default" href="Node_wqj6nlaGAqCMshQO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="793, 114, 1090, 389" coords2="793, 114, 1090, 389" shape="rect" alt="DEVICE CLIENTE:Node" id="areadiagram_map_WxzanlaGAqCMshN1_default" href="Node_WxzanlaGAqCMshN2.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="85, 294, 195, 334" coords2="85, 294, 195, 334" shape="rect" alt="*.sql:Artifact" id="areadiagram_map_SwSanlaGAqCMshNi_default" href="Artifact_SwSanlaGAqCMshNj.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="65, 248, 228, 348" coords2="65, 248, 228, 348" shape="rect" alt="Mypostgrest SQL:Node" id="areadiagram_map_CKCqnlaGAqCMshMy_default" href="Node_CKCqnlaGAqCMshMz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="30, 190, 263, 365" coords2="30, 190, 263, 365" shape="rect" alt="windows:Node" id="areadiagram_map_gdMqnlaGAqCMshMp_default" href="Node_gdMqnlaGAqCMshMq.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 133, 304, 397" coords2="2, 133, 304, 397" shape="rect" alt=" SERVIDOR BASE DE DATOS:Node" id="areadiagram_map_Em0qnlaGAqCMshMg_default" href="Node_km0qnlaGAqCMshMh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="435, 411, 581, 459" coords2="435, 411, 581, 459" shape="rect" alt="*:war:Artifact" id="areadiagram_map_yGcKnlaGAqCMshKu_default" href="Artifact_yGcKnlaGAqCMshKv.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="409, 355, 612, 484" coords2="409, 355, 612, 484" shape="rect" alt="apache :Node" id="areadiagram_map_Fe4KnlaGAqCMshKj_default" href="Node_Fe4KnlaGAqCMshKk.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="375, 302, 645, 495" coords2="375, 302, 645, 495" shape="rect" alt="windows:Node" id="areadiagram_map_CnlKnlaGAqCMshLg_default" href="Node_CnlKnlaGAqCMshLh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="346, 252, 675, 514" coords2="346, 252, 675, 514" shape="rect" alt="SERVIDOR WED:Node" id="areadiagram_map_RCdynlaGAqCMshKU_default" href="Node_RCdynlaGAqCMshKV.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Artifact.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Artifact.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Artifact_qk6mnlaGAqCMshTy.html" class="ItemLink">email : Artifact</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_o0KmnlaGAqCMshTp.html" class="ItemLink">gmail : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_0pgmnlaGAqCMshSy.html" class="ItemLink">Servidor de correo : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Artifact.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Artifact.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Artifact_ir36nlaGAqCMshQX.html" class="ItemLink">html,css,js : Artifact</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_wqj6nlaGAqCMshQO.html" class="ItemLink">navegador : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_WxzanlaGAqCMshN2.html" class="ItemLink">DEVICE CLIENTE : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Artifact.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Artifact.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Artifact_SwSanlaGAqCMshNj.html" class="ItemLink">*.sql : Artifact</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_CKCqnlaGAqCMshMz.html" class="ItemLink">Mypostgrest SQL : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_gdMqnlaGAqCMshMq.html" class="ItemLink">windows : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_km0qnlaGAqCMshMh.html" class="ItemLink"> SERVIDOR BASE DE DATOS : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Artifact.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Artifact.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Artifact_yGcKnlaGAqCMshKv.html" class="ItemLink">*:war : Artifact</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_Fe4KnlaGAqCMshKk.html" class="ItemLink">apache  : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_CnlKnlaGAqCMshLh.html" class="ItemLink">windows : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Node.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Node.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Node_RCdynlaGAqCMshKV.html" class="ItemLink">SERVIDOR WED : Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		windows servidor	</div>
+</body>
+</html>
